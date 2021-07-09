@@ -15,6 +15,8 @@ public class RandomTerrainGeneration : MonoBehaviour
 
     [Header("Landing Properties")]
     [SerializeField] int landingZones;
+    [SerializeField] GameObject landingZonePrefab;
+    [SerializeField] float landingZoneHeight;
 
     private Spline terrainSpline;
     private List<int> landingPoints = new List<int>();
@@ -61,7 +63,7 @@ public class RandomTerrainGeneration : MonoBehaviour
             do
             {
                 randomPos = Random.Range(4, pointAmount - 2);
-            } while (landingPoints.Contains(randomPos));            
+            } while (landingPoints.Contains(randomPos));
 
             landingPoints.Add(randomPos);
             landingPoints.Add(randomPos + 1);
@@ -75,6 +77,15 @@ public class RandomTerrainGeneration : MonoBehaviour
 
             terrainSpline.SetPosition(randomPos - 1, auxMinus1);
             terrainSpline.SetPosition(randomPos + 1, auxPlus1);
+
+            GameObject randomLandingPos = Instantiate(landingZonePrefab);
+
+            float Xscale = Mathf.Abs(terrainSpline.GetPosition(randomPos + 1).x) - Mathf.Abs(terrainSpline.GetPosition(randomPos - 1).x);
+            float Yposition = terrainSpline.GetPosition(randomPos).y + (landingZoneHeight / 2);
+
+            randomLandingPos.transform.position = new Vector3(terrainSpline.GetPosition(randomPos).x, Yposition, 1);            
+            randomLandingPos.transform.localScale = new Vector3(Xscale, landingZoneHeight, 1);
+            randomLandingPos.transform.parent = transform;
         }
     }
 }
