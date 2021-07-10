@@ -8,4 +8,13 @@ public class Player : MonoBehaviour
         public int score;
     }
     public MatchData matchData;
+
+    public int GetLevel()
+    {
+        return matchData.level;
+    }
+    public int GetScore()
+    {
+        return matchData.score;
+    }
 }

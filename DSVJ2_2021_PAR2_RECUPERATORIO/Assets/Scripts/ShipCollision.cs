@@ -16,16 +16,19 @@ public class ShipCollision : MonoBehaviour
 
             if (isLowOnSpeed && isAngledCorrectly)
             {
-                //Aca ganas la partida
+                LevelChanger levelChangeManager = FindObjectOfType<LevelChanger>();
+                levelChangeManager.WinLevel();
             }
             else
             {
-                //Aca explota el jugador al pingo
+                LevelChanger levelChangeManager = FindObjectOfType<LevelChanger>();
+                levelChangeManager.Explode();
             }
         }
         else
         {
-            //Aca explota el jugador al pingo
+            LevelChanger levelChangeManager = FindObjectOfType<LevelChanger>();
+            levelChangeManager.Explode();
         }
     }
 }
