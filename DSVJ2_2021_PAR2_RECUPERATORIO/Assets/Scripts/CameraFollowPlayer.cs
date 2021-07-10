@@ -2,13 +2,10 @@
 
 public class CameraFollowPlayer : MonoBehaviour
 {
-    void Start()
-    {
-        
-    }
+    [SerializeField] GameObject target;
 
-    void LateUpdate()
+    void Update()
     {
-
+        transform.position = new Vector3(target.transform.position.x, transform.position.y, transform.position.z);
     }
 }

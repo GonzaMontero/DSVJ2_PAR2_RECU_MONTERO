@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
-
 [RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D),typeof(ShipMovement))]
-
 public class ShipCollision : MonoBehaviour
 {
     [SerializeField] float angleThreshold;
