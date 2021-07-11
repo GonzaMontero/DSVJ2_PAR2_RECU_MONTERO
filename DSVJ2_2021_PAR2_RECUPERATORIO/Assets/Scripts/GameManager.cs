@@ -8,29 +8,31 @@ public class GameManager : Singleton<GameManager>
     }
     public PlayerData data;
     public PlayerData highScore;
-    private Player player;
+    private GameObject player;
     private void Start()
     {
-        player = FindObjectOfType<Player>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        Player startingData = player.GetComponent<Player>();
         data.playerScore = 0;
         data.currentLevel = 1;
         GetHighScore();
     }
     public void SaveData()
     {
-        player = FindObjectOfType<Player>();
-        data.playerScore = player.matchData.score;
-        data.currentLevel = player.matchData.level;
+        Player savedData = player.GetComponent<Player>();
+        data.playerScore = savedData.GetScore();
+        data.currentLevel = savedData.GetScore();
     }
     public void LoadData()
     {
-        player = FindObjectOfType<Player>();
-        player.matchData.level = data.currentLevel;
-        player.matchData.score = data.playerScore;
+        Player loadedData = player.GetComponent<Player>();
+        loadedData.matchData.level = data.currentLevel;
+        loadedData.matchData.score = data.playerScore;
     }
     public void CompareScores()
     {
-        if (highScore.playerScore < player.matchData.score)
+        Player compareData = player.GetComponent<Player>();
+        if (highScore.playerScore < compareData.matchData.score)
         {
             highScore = data;
             PlayerPrefs.SetInt("Score", highScore.playerScore);
@@ -41,5 +43,10 @@ public class GameManager : Singleton<GameManager>
     {
         highScore.playerScore = PlayerPrefs.GetInt("Score");
         highScore.currentLevel = PlayerPrefs.GetInt("Level Reached");
+    }
+    public void ResetScores()
+    {
+        data.playerScore = 0;
+        data.currentLevel = 1;
     }
 }

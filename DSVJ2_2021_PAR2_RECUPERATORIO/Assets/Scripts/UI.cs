@@ -9,11 +9,10 @@ public class UI : MonoBehaviour
     [SerializeField] TextMeshProUGUI horizontalVelocityText;
 
     [SerializeField] GameObject player;
-
     void Start()
     {
-        levelText.text = "Level: " + player.GetComponent<Player>().GetLevel();
-        scoreText.text = "Score: " + player.GetComponent<Player>().GetScore();
+        levelText.text = "Level: " + player.GetComponent<Player>().GetLevel().ToString();
+        scoreText.text = "Score: " + player.GetComponent<Player>().GetScore().ToString();
     }
 
     void LateUpdate()
