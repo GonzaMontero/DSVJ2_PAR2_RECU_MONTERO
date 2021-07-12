@@ -4,11 +4,20 @@ public class ShipMovement : MonoBehaviour
 {
     [SerializeField] float jumpForce;
     [SerializeField] float rotateSpeed;
+    [SerializeField] float gravityScale;
     Rigidbody2D rb;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        if (gravityScale > 1)
+        {
+            rb.gravityScale = gravityScale;
+        }
+        else
+        {
+            rb.gravityScale = 9.81f;
+        }
     }
 
     private void Update()
