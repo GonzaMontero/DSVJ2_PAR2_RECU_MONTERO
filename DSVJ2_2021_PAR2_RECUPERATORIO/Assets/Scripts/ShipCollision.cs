@@ -5,14 +5,14 @@ public class ShipCollision : MonoBehaviour
     [SerializeField] float angleThreshold;
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag=="Landing Zone")
+        if (collision.gameObject.tag == "Landing Zone")
         {
-            float currentSpeedX = gameObject.GetComponent<Rigidbody2D>().velocity.x;
-            float currentSpeedY = gameObject.GetComponent<Rigidbody2D>().velocity.y;
-            bool isLowOnSpeed = (currentSpeedY < 1f && currentSpeedY > 1f) && (currentSpeedX < 1f && currentSpeedX > 1f);
+            float currentSpeedX = Mathf.Abs(gameObject.GetComponent<Rigidbody2D>().velocity.x);
+            float currentSpeedY = Mathf.Abs(gameObject.GetComponent<Rigidbody2D>().velocity.y);
+            bool isLowOnSpeed = (currentSpeedY < 0.5f) && (currentSpeedX < 0.5f);
 
-            float angledifference = Vector2.Angle(Vector2.up, transform.up);
-            bool isAngledCorrectly = angledifference <= angleThreshold;
+            float angledifference = Mathf.Abs(Vector2.Angle(Vector2.up, transform.up));
+            bool isAngledCorrectly = angledifference < angleThreshold;
 
             if (isLowOnSpeed && isAngledCorrectly)
             {
