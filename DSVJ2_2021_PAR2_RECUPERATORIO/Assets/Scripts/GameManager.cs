@@ -21,7 +21,7 @@ public class GameManager : Singleton<GameManager>
     {
         Player savedData = player.GetComponent<Player>();
         data.playerScore = savedData.GetScore();
-        data.currentLevel = savedData.GetScore();
+        data.currentLevel = savedData.GetLevel();
     }
     public void LoadData()
     {

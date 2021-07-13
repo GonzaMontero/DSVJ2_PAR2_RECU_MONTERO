@@ -7,9 +7,9 @@ public class ButtonManager : MonoBehaviour
     {
         SceneManager.LoadScene("Main Game");
     }
-    public void LoadSettings()
+    public void ReturnToMenu()
     {
-        SceneManager.LoadScene("Settings and Credits");
+        SceneManager.LoadScene("Main Menu");
     }
     public void ExitGame()
     {

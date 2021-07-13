@@ -5,40 +5,44 @@ public class ShipMovement : MonoBehaviour
     [SerializeField] float jumpForce;
     [SerializeField] float rotateSpeed;
     [SerializeField] float gravityScale;
+    [SerializeField] float fuelConsumptionPerFrame;
+    float fuel;
     Rigidbody2D rb;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        if (gravityScale > 1)
+        rb.gravityScale = CalculateGravity();
+        fuel = 1000;
+    }
+
+    private void FixedUpdate()
+    {
+        if (fuel > 0)
         {
-            rb.gravityScale = gravityScale;
-        }
-        else
-        {
-            rb.gravityScale = 9.81f;
+            if (Input.GetKey(KeyCode.Space))
+            {
+                rb.AddForce(transform.up * jumpForce);
+                fuel -= fuelConsumptionPerFrame;
+            }
+            if (Input.GetKey(KeyCode.A))
+            {
+                rb.AddTorque(rotateSpeed);
+            }
+            else if (Input.GetKey(KeyCode.D))
+            {
+                rb.AddTorque(-rotateSpeed);
+            }
         }
     }
 
-    private void Update()
+    float CalculateGravity()
     {
-        if (Input.GetKey(KeyCode.Space))
-        {
-            rb.AddForce(transform.up * jumpForce);
-        }
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            RotateShip(rotateSpeed);
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            RotateShip(-rotateSpeed);
-        }
+        return (1 * gravityScale) / 9.81f;
     }
 
-    void RotateShip(float rotateSpeed)
+    public float ReturnFuel()
     {
-        transform.Rotate(new Vector3(0, 0, rotateSpeed * Time.deltaTime));
+        return fuel;
     }
 }
