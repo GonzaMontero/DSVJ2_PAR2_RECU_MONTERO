@@ -16,19 +16,19 @@ public class ShipCollision : MonoBehaviour
 
             if (isLowOnSpeed && isAngledCorrectly)
             {
-                LevelChanger levelChangeManager = FindObjectOfType<LevelChanger>();
-                levelChangeManager.WinLevel();
+                GameObject levelChanger = GameObject.FindGameObjectWithTag("Level");
+                levelChanger.GetComponent<LevelChanger>().WinLevel();
             }
             else
             {
-                LevelChanger levelChangeManager = FindObjectOfType<LevelChanger>();
-                levelChangeManager.Explode();
+                GameObject levelChanger = GameObject.FindGameObjectWithTag("Level");
+                levelChanger.GetComponent<LevelChanger>().Explode();
             }
         }
         else
         {
-            LevelChanger levelChangeManager = FindObjectOfType<LevelChanger>();
-            levelChangeManager.Explode();
+            GameObject levelChanger = GameObject.FindGameObjectWithTag("Level");
+            levelChanger.GetComponent<LevelChanger>().Explode();
         }
     }
 }

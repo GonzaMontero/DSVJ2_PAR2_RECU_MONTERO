@@ -9,7 +9,7 @@ public class GameManager : Singleton<GameManager>
     public PlayerData data;
     public PlayerData highScore;
     private GameObject player;
-    private void Start()
+    public void FindData()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         Player startingData = player.GetComponent<Player>();
