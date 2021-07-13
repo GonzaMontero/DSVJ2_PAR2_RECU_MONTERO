@@ -18,6 +18,9 @@ public class RandomTerrainGeneration : MonoBehaviour
     [SerializeField] GameObject landingZonePrefab;
     [SerializeField] float landingZoneHeight;
 
+    [Header("Map Border Properties")]
+    [SerializeField] GameObject borders;
+
     private Spline terrainSpline;
     private List<int> landingPoints = new List<int>();
 
@@ -33,6 +36,9 @@ public class RandomTerrainGeneration : MonoBehaviour
 
         terrainSpline.SetPosition(2, terrainSpline.GetPosition(2) + Vector3.right * stretchDistance);
         terrainSpline.SetPosition(3, terrainSpline.GetPosition(3) + Vector3.right * stretchDistance);
+
+        Instantiate(borders, new Vector3(terrainSpline.GetPosition(1).x, 5, 0), Quaternion.identity, transform);
+        Instantiate(borders, new Vector3(terrainSpline.GetPosition(2).x, 5, 0), Quaternion.identity, transform);
 
         float distanceBetweenPoints = (Mathf.Abs(terrainSpline.GetPosition(2).x) + Mathf.Abs(terrainSpline.GetPosition(1).x)) / pointAmount;
 

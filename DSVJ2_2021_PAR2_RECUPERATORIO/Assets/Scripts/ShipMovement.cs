@@ -6,6 +6,7 @@ public class ShipMovement : MonoBehaviour
     [SerializeField] float rotateSpeed;
     [SerializeField] float gravityScale;
     [SerializeField] float fuelConsumptionPerFrame;
+    [SerializeField] GameObject particleSystem;
     float fuel;
     Rigidbody2D rb;
 
@@ -23,8 +24,21 @@ public class ShipMovement : MonoBehaviour
             if (Input.GetKey(KeyCode.Space))
             {
                 rb.AddForce(transform.up * jumpForce);
+                if (particleSystem.activeSelf)
+                {
+                    particleSystem.GetComponent<ParticleSystem>().Play();
+                }
+                else
+                {
+                    particleSystem.SetActive(true);
+                }
                 fuel -= fuelConsumptionPerFrame;
             }
+            else
+            {
+                particleSystem.SetActive(false);
+            }
+
             if (Input.GetKey(KeyCode.A))
             {
                 rb.AddTorque(rotateSpeed);

@@ -9,10 +9,10 @@ public class ShipCollision : MonoBehaviour
         {
             float currentSpeedX = gameObject.GetComponent<Rigidbody2D>().velocity.x;
             float currentSpeedY = gameObject.GetComponent<Rigidbody2D>().velocity.y;
-            bool isLowOnSpeed = (currentSpeedY < 0.1f && currentSpeedY > -0.1f) && (currentSpeedX < 0.1f && currentSpeedX > -0.1f);
+            bool isLowOnSpeed = (currentSpeedY < 1f && currentSpeedY > 1f) && (currentSpeedX < 1f && currentSpeedX > 1f);
 
             float angledifference = Vector2.Angle(Vector2.up, transform.up);
-            bool isAngledCorrectly = angledifference < angleThreshold;
+            bool isAngledCorrectly = angledifference <= angleThreshold;
 
             if (isLowOnSpeed && isAngledCorrectly)
             {
