@@ -30,7 +30,6 @@ public class LevelChanger : MonoBehaviour
         EndGameHolder.SetActive(true);
         HighScoreText.text = "High Score: " + GameManager.instance.highScore.playerScore;
         ButtonText.text = "Next Level";
-        GameManager.instance.ResetScores();
         VictoryLossIcons[0].SetActive(true);
         VictoryLossIcons[1].SetActive(false);
     }
