@@ -16,7 +16,7 @@ public class CheckIfObjectLeaves : MonoBehaviour
         }
         else if(player.GetComponent<Renderer>().isVisible && LeftScreen == true)
         {
-            StopCoroutine(ObjectReturnTimer());
+            StopAllCoroutines();
             LeftScreen = false;
             returnText.SetActive(false);
         }
