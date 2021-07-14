@@ -9,15 +9,9 @@ public class LevelChanger : MonoBehaviour
     [SerializeField] TextMeshProUGUI ButtonText;
     [SerializeField] TextMeshProUGUI HighScoreText;
     [SerializeField] GameObject[] VictoryLossIcons;
-    private GameObject player;
 
-    private void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player");
-    }
     public void Explode()
     {
-        GameManager.instance.SaveData();
         GameManager.instance.CompareScores();
         GameHolder.SetActive(false);
         EndGameHolder.SetActive(true);
@@ -29,9 +23,8 @@ public class LevelChanger : MonoBehaviour
     }
     public void WinLevel()
     {
-        player.GetComponent<Player>().matchData.level++;
-        player.GetComponent<Player>().matchData.score += 100;
-        GameManager.instance.SaveData();
+        GameManager.instance.data.playerScore += 100;
+        GameManager.instance.data.currentLevel++;
         GameManager.instance.CompareScores();
         GameHolder.SetActive(false);
         EndGameHolder.SetActive(true);

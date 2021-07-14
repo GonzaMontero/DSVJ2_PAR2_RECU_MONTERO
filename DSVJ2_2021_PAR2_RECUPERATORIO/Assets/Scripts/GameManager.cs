@@ -8,31 +8,17 @@ public class GameManager : Singleton<GameManager>
     }
     public PlayerData data;
     public PlayerData highScore;
-    private GameObject player;
+    private void Start()
+    {
+        data.currentLevel = 1;
+    }
     public void FindData()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        Player startingData = player.GetComponent<Player>();
-        data.playerScore = 0;
-        data.currentLevel = 1;
         GetHighScore();
-    }
-    public void SaveData()
-    {
-        Player savedData = player.GetComponent<Player>();
-        data.playerScore = savedData.GetScore();
-        data.currentLevel = savedData.GetLevel();
-    }
-    public void LoadData()
-    {
-        Player loadedData = player.GetComponent<Player>();
-        loadedData.matchData.level = data.currentLevel;
-        loadedData.matchData.score = data.playerScore;
     }
     public void CompareScores()
     {
-        Player compareData = player.GetComponent<Player>();
-        if (highScore.playerScore < compareData.matchData.score)
+        if (highScore.playerScore < data.playerScore)
         {
             highScore = data;
             PlayerPrefs.SetInt("Score", highScore.playerScore);
