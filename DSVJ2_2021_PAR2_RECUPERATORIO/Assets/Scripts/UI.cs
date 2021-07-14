@@ -12,8 +12,8 @@ public class UI : MonoBehaviour
     [SerializeField] GameObject player;
     void Start()
     {
-        levelText.text = "Level: " + player.GetComponent<Player>().GetLevel().ToString();
-        scoreText.text = "Score: " + player.GetComponent<Player>().GetScore().ToString();
+        levelText.text = "Level: " + player.GetComponent<Player>().GetLevel();
+        scoreText.text = "Score: " + player.GetComponent<Player>().GetScore();
     }
 
     void LateUpdate()

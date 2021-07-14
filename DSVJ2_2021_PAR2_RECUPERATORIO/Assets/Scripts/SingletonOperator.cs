@@ -7,5 +7,6 @@ public class SingletonOperator : MonoBehaviour
     void Start()
     {
         GameManager.instance.FindData();
+        GameManager.instance.LoadData();
     }
 }
